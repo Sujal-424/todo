@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+{% block content%}
+<body>
+    <div style="margin-top: 50px;" class="ui container">  
+        <h1 class="ui center aligned big header">To Do App</h1>
+        <div style="text-align:center;">
+        <form class="ui form" action="/add" method="post">
+            <div class="field">
+                <label for="title">To do Title</label>
+                <input type="text" name="title" placeholder="Enter Task" style="text-align: center;"><br>
+            </div>
+            <div class="field">   
+                <label for="time_req">Time Required</label>
+                <input type="text" name="time_req" placeholder="Enter Time Required" style="text-align: center;"><br>
+            </div>
+            <div class="field">   
+                <label for="priority">Task Priority</label>
+                <input type="text" name="priority" placeholder="Enter Task Priority(i.e. High, Medium, Low)" style="text-align: center;"><br>
+            </div>    
+            <button class="ui blue button" type="submit">Add</button>
+        
+        </div>    
+        </form>
+
+        <hr>
+
+        {% for todo in todo_list %}
+        <div class="ui segment">
+            <p class="ui small header"> {{ todo.title }} | {{ todo.time_req }} | {{ todo.priority }}  </p>
+        
+            {% if todo.complete == False %}
+                <span class="ui gray label">Not Complete</span>
+            {% else %}
+                <span class="ui green label">Completed</span>
+            {% endif %}
+
+            <a class="ui blue button" href="/update/{{ todo.id_a }}">Update</a>
+            <a class="ui red button" href="/delete/{{ todo.id_a }}">Delete</a>
+        </div>
+        {% endfor %}
+        <div  class="ui raised segment">
+        <p><b>Logged in as: <i> {{ current_user.username }} </i> </b></p>    
+    <!--<a class="ui red button" href="{{ url_for('logout')}}">Logout</a>-->
+    </div>
+    </div>    
+</body>
+{% endblock %}

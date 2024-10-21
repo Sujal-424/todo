@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% block content%}
+
+<body>
+    <div style="margin-top: 50px;" class="ui container">  
+        <h1 class="ui center aligned big header">Login</h1>
+        <div style="margin: 50px;">
+        <div style="text-align:center;">
+        <form method="POST" action="">
+        <form style="input is-large">
+            {{ form.hidden_tag() }}
+            {{ form.username }}
+            
+            {{ form.password }}
+                
+            {{ form.submit }}
+        
+        
+        </div>
+        </div>
+        </form>
+
+        <a class="ui blue button" href="{{url_for('register')}}">Don't have an account? Sign up</a>
+    </div>
+</body>
+{% endblock %}
